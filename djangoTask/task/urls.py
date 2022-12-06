@@ -6,3 +6,4 @@ router.register('api/task', ProjectViewSet, 'projects')
 router.register('api/comment', ProjectViewComment, 'comment')
 
 urlpatterns = router.urls
+
