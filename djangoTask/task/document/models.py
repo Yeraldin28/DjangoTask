@@ -26,19 +26,19 @@ class Task(models.Model):
     deadline = models.DateField()
 
     def __str__(self):
-        return str(self.task_name)
+        return str(self.name)
 
-   def __call__(self, deadline):
+    def __call__(self, deadline):
     #deadline debe ser mayor a la fecha de creacion 
     if deadline <= datetime.now():
         message= 'La fecha no puede ser menor al dia de creación'
         raise serializers.ValidationError(message)
 
 class TaskComment(models.Model):
-   description = models.TextField()
-   blog = models.ForeignKey(Task, on_delete=models.CASCADE)
+    description = models.TextField()
+    blog = models.ForeignKey(Task, on_delete=models.CASCADE)
 
-   def __str__(self):
+    def __str__(self):
         return str(self.description)
     
 
