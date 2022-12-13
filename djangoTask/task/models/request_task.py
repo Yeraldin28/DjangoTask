@@ -2,6 +2,8 @@ from django.db import models
 
 from datetime import date
 from django.template.defaultfilters import slugify
+import datetime
+from django.utils import timezone
 
 # Create your models here.
     
@@ -27,7 +29,9 @@ class RequestTask(models.Model):
 
     def __str__(self):
         return str(self.name)
-
+    def was_published_recenrly(self):
+        # al poner la fecha de entrega menor al dia de crewacion debe aparecer en falso 
+        return timezone.now() >= self.deadline >= timezone.now() - datetime.timedelta(days=1)
     #def __call__(self, deadline):
     #deadline debe ser mayor a la fecha de creacion 
     #if deadline <= datetime.now():
